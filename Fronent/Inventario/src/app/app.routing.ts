@@ -13,10 +13,16 @@ const routes: Routes =[
   }, {
     path: '',
     component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-    }]
+    children: [
+      {
+        path: '',
+        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+      },
+      {
+        path: '',
+        loadChildren: './catalogo/catalogo.module#CatalogoModule'
+      }
+    ]
   }
 ];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogoService } from '../catalogo.service';
 
 @Component({
   selector: 'app-bodega',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BodegaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private api : CatalogoService
+  ) { }
 
   ngOnInit() {
+    console.log("consumir api");
+    
+    this.api.getEstados().subscribe(
+      data=>{
+        console.log(data);
+      }
+    )
   }
 
 }

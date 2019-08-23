@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogoService } from '../catalogo.service';
 
 @Component({
   selector: 'app-pasillo',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PasilloComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private api:CatalogoService
+  ) { }
 
   ngOnInit() {
+    this.api.getEstados().subscribe(
+      data=>{
+        console.log(data);
+      }
+    )
   }
 
 }
