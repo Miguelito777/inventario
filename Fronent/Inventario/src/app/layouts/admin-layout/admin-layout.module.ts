@@ -23,6 +23,7 @@ import {
   MatAutocompleteModule
 } from '@angular/material';
 import { from } from 'rxjs';
+import { CatalogoComponent } from 'app/catalogo/catalogo/catalogo.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -47,6 +48,7 @@ import { from } from 'rxjs';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    CatalogoComponent
   ]
 })
 

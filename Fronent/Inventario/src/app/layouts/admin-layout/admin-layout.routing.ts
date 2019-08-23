@@ -9,6 +9,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { CatalogoComponent } from 'app/catalogo/catalogo/catalogo.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -62,5 +63,13 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
+    {
+        path: 'Catalogo',
+        component: CatalogoComponent,
+        children: [{
+          path: '',
+          loadChildren: './catalogo/catalogo.module#CatalogoModule'
+        }]
+      }
 
 ];
