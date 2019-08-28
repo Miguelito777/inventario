@@ -23,6 +23,7 @@ import {
   MatAutocompleteModule
 } from '@angular/material';
 import { from } from 'rxjs';
+import { CategoriaComponent } from '../categoria/categoria.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -39,6 +40,7 @@ import { from } from 'rxjs';
   ],
   declarations: [
     DashboardComponent,
+    CategoriaComponent,
     UserProfileComponent,
     UserProfile2Component,
     TableListComponent,

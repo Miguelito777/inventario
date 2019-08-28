@@ -13,7 +13,7 @@ class TC_CATEGORIA extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'categoria',
         
     ];
     
