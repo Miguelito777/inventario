@@ -15,17 +15,22 @@ class TABLASCATALOGO extends Migration
     {
         Schema::create('TC_CATEGORIA', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('name');
+            $table->string('categoria');
             $table->timestamps();
         });
 
         Schema::create('TC_BODEGAS', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('name','15');
+            $table->string('bodega','15');
             $table->string('direccion','100');
             $table->timestamps();
-            
-
+        });
+        
+        Schema::create('TC_MOTIVO', function (Blueprint $table) {
+            $table->Increments('id');
+            $table->string('motivo','15');
+            $table->string('observaciones','100');
+            $table->timestamps();
         });
 
     }
@@ -42,5 +47,6 @@ class TABLASCATALOGO extends Migration
     {
         Schema::dropIfExists('TC_BODEGAS');
         Schema::dropIfExists('TC_CATEGORIA');
+        Schema::dropIfExists('TC_MOTIVO');
     }
 }

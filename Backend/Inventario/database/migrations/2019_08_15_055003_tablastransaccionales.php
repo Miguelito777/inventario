@@ -15,7 +15,9 @@ class Tablastransaccionales extends Migration
     {
         Schema::create('TT_TIPOMOV', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('nombretip');
+            $table->string('tipomov');
+            $table->unsignedInteger('id_motivo');
+            $table->foreign('id_motivo')->references('id')->on('TC_MOTIVO');
             $table->timestamps();
         });
 
@@ -45,35 +47,15 @@ class Tablastransaccionales extends Migration
             $table->foreign('idpasillo')->references('id')->on('TT_PASILLOS');
             $table->timestamps();
         });
-
-        Schema::create('TT_INGRESO', function (Blueprint $table) {
-            $table->Increments('id');
-            $table->string('motivo', '15');
-            $table->float('descuento');
-            $table->unsignedInteger('idtipomov');
-            $table->foreign('idtipomov')->references('id')->on('TT_TIPOMOV');
-            $table->timestamps();
-        });
-
-        Schema::create('TT_EGRESOS', function (Blueprint $table) {
-            $table->Increments('id');
-            $table->string('motivo', '15');
-            $table->float('ganancia');
-            $table->unsignedInteger('idtipomovim');
-            $table->foreign('idtipomovim')->references('id')->on('TT_TIPOMOV');
-            $table->timestamps();
-        });
         
         Schema::create('TT_MOVIMIENTO', function (Blueprint $table) {
             $table->Increments('id');
             $table->integer('cantidad');
             $table->float('precio');
             $table->unsignedInteger('idtipomovimiento');
-            $table->unsignedInteger('idproducto');
-            $table->unsignedInteger('idbodega');
+            $table->unsignedInteger('id_estanteria');
             $table->foreign('idtipomovimiento')->references('id')->on('TT_TIPOMOV');
-            $table->foreign('idproducto')->references('id')->on('TT_PRODUCTO');
-            $table->foreign('idbodega')->references('id')->on('TC_BODEGAS');
+            $table->foreign('id_estanteria')->references('id')->on('TT_ESTANTERIAS');
             $table->timestamps();
         });
 
@@ -94,8 +76,6 @@ class Tablastransaccionales extends Migration
         Schema::dropIfExists('TT_PRODUCTO');
         Schema::dropIfExists('TT_PASILLOS');
         Schema::dropIfExists('TT_ESTANTERIAS');
-        Schema::dropIfExists('TT_INGRESOS');
-        Schema::dropIfExists('TT_EGRESOS');
         Schema::dropIfExists('TT_MOVIMIENTO');
     }
 }
