@@ -8,10 +8,9 @@
                       <p class="card-category">Si deses ingresar una nueva categoria favor de escribirla, de lo contrario  selecciones.</p>
                   </div>
                   <div class="card-body">
-                    <h1>hola desde pasillo</h1>
-                    <!--<form>
-
-                      </form>-->
+                    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+                        <button class="button" type="submit">Purchase</button>
+                      </form>
                   </div>
               </div>
           </div>

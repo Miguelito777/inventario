@@ -6,13 +6,15 @@ import { PasilloComponent } from './pasillo/pasillo.component';
 import { BodegaComponent } from './bodega/bodega.component';
 import { EstantesComponent } from './estantes/estantes.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PasilloComponent, BodegaComponent, EstantesComponent],
   imports: [
     CommonModule,
     CatalogoRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class CatalogoModule { }

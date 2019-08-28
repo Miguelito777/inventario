@@ -7,12 +7,16 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CatalogoService {
-  private url="http://localhost:8080/";
+  private url="https://rocky-ravine-31232.herokuapp.com/";
+  public finallyUrl:any='';
   constructor(
     private http: HttpClient
   ) { }
-  getEstados(): Observable<any> {
-    return this.http.get<any>(this.url+'Estado/all')
+  private getUrl(base, service) {   
+    this.finallyUrl=base+service;
+  }
+  getEstados(): Observable<any> {    
+    return this.http.get<any>('https://rocky-ravine-31232.herokuapp.com/'+'Estado/all')
     .pipe(
       catchError(this.handleError('Expediente/GetAll', undefined))
     );
