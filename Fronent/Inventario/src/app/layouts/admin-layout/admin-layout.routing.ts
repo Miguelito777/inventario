@@ -65,7 +65,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',   component: DashboardComponent },
     { path: 'categoria',   component: CategoriaComponent },
     //{ path: 'estanteria',   component: EstanteriasComponent },
-    //{ path: 'motivo',     component: MotivoComponent },
+    { path: 'motivo',     component: MotivoComponent },
     //{ path: 'movimientos',     component: MovimientosComponent },
     //{ path: 'pasillos',          component: PasilloComponent },
     //{ path: 'productos',           component: ProductosComponent},
