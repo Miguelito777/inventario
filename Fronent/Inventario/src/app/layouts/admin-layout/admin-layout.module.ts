@@ -12,14 +12,20 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { MotivoComponent } from '../motivo/motivo.component';
+import { BodegasComponent } from '../bodegas/bodegas.component';
+import { PasillosComponent } from '../pasillos/pasillos.component';
+import { EstanteriasComponent } from '../estanterias/estanterias.component';
+import { ProductosComponent } from '../productos/productos.component';
+import { MovimientosComponent } from '../movimientos/movimientos.component';
+import { TipomovComponent } from '../tipomov/tipomov.component';
 import {
   MatButtonModule,
   MatInputModule,
   MatRippleModule,
   MatFormFieldModule,
-  MatTooltipModule,
-  MatSelectModule,
+    MatSelectModule,
   MatAutocompleteModule
 } from '@angular/material';
 import { from } from 'rxjs';
@@ -48,7 +54,17 @@ import { CategoriaComponent } from '../categoria/categoria.component';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent
+    UpgradeComponent,
+    MotivoComponent,
+    BodegasComponent,
+    PasillosComponent,
+    EstanteriasComponent,
+    ProductosComponent,
+    MovimientosComponent,
+    TipomovComponent,
+    
+
+
   ]
 })
 

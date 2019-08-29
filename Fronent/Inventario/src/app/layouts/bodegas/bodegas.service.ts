@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService {
+export class BodegasService {
   private url="http://localhost:8000/api/";
   public finallyUrl:any='';
 
@@ -16,10 +16,10 @@ export class CategoriaService {
   private getUrl(base, service) {   
     this.finallyUrl=base+service;
   }
-  getCategorias(): Observable<any> {    
-    return this.http.get<any>(this.url+'mostrarcat')
+  getBodegas(): Observable<any> {    
+    return this.http.get<any>(this.url+'mostrarbod')
     .pipe(
-      catchError(this.handleError('mostrarcat', undefined))
+      catchError(this.handleError('mostrarbod', undefined))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {

@@ -10,6 +10,14 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { CategoriaComponent } from '../categoria/categoria.component';
+import { EstanteriasComponent } from '../estanterias/estanterias.component';
+import { MotivoComponent } from '../motivo/motivo.component';
+import { TipomovComponent } from '../tipomov/tipomov.component';
+
+import { MovimientosComponent } from '../movimientos/movimientos.component';
+import { PasilloComponent } from 'app/catalogo/pasillo/pasillo.component';
+import { ProductosComponent } from '../productos/productos.component';
+import { BodegasComponent } from '../bodegas/bodegas.component';
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
@@ -53,14 +61,15 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'dashboard',      component: DashboardComponent },
+    //{ path: 'bodegas',      component: BodegasComponent },
+    { path: 'dashboard',   component: DashboardComponent },
     { path: 'categoria',   component: CategoriaComponent },
-    { path: 'user-profile2',   component: UserProfile2Component },
-    { path: 'table-list',     component: TableListComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    //{ path: 'estanteria',   component: EstanteriasComponent },
+    //{ path: 'motivo',     component: MotivoComponent },
+    //{ path: 'movimientos',     component: MovimientosComponent },
+    //{ path: 'pasillos',          component: PasilloComponent },
+    //{ path: 'productos',           component: ProductosComponent},
+    //{ path: 'tipomov',  component: TipomovComponent },
+    //{ path: 'upgrade',        component: UpgradeComponent }
 
 ];

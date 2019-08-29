@@ -10,13 +10,13 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'INICIO',  icon: 'dashboard', class: '' },
     { path: '/categoria', title: 'CATEGORIAS',  icon: 'dashboard', class: '' },
-    { path: '/Pasillo', title: 'MOTIVOS',  icon:'person', class: '' },
-    { path: '/user-profile2', title: 'BODEGAS',  icon:'person', class: '' },
-    { path: '/table-list', title: 'PASILLOS',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'ESTANTERIAS',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'TIPOS DE MOVIMIENTO',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'PRODUCTOS',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'MOVIMIENTOS',  icon:'notifications', class: '' }
+   // { path: '/Pasillo', title: 'MOTIVOS',  icon:'person', class: '' },
+   // { path: '/Bodegas', title: 'BODEGAS',  icon:'person', class: '' },
+   // { path: '/Pasillos', title: 'PASILLOS',  icon:'content_paste', class: '' },
+   // { path: '/Estanterias', title: 'ESTANTERIAS',  icon:'library_books', class: '' },
+   // { path: '/tipomov', title: 'TIPOS DE MOVIMIENTO',  icon:'bubble_chart', class: '' },
+   // { path: '/productos', title: 'PRODUCTOS',  icon:'location_on', class: '' },
+   // { path: '/movimientos', title: 'MOVIMIENTOS',  icon:'notifications', class: '' }
 ];
 
 @Component({
