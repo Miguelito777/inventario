@@ -78,4 +78,12 @@
         $router->post('movimiento', ['uses' => 'movimientoController@create']);
         $router->put('actualizarmovimiento/{id}',  ['uses' => 'movimientoController@update']);
         $router->delete('eliminarmovimiento/{id}',  ['uses' => 'movimientoController@delete']);
+
+
+        $router->get('mostrarunmotivo/{id}',  ['uses' => 'motivoController@showOnemotivo']);
+        $router->get('mostrarmotivo',  ['uses' => 'motivoController@showAllmotivo']);
+        $router->post('motivo', ['uses' => 'motivoController@create']);
+        $router->put('actualizarmotivo/{id}',  ['uses' => 'motivoController@update']);
+        $router->delete('eliminarmotivo/{id}',  ['uses' => 'motivoController@delete']);
+
        });
