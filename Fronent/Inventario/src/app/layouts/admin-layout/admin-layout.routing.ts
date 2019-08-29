@@ -15,9 +15,9 @@ import { MotivoComponent } from '../motivo/motivo.component';
 import { TipomovComponent } from '../tipomov/tipomov.component';
 
 import { MovimientosComponent } from '../movimientos/movimientos.component';
-import { PasilloComponent } from 'app/catalogo/pasillo/pasillo.component';
 import { ProductosComponent } from '../productos/productos.component';
 import { BodegasComponent } from '../bodegas/bodegas.component';
+import { PasillosComponent } from '../pasillos/pasillos.component';
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
@@ -61,13 +61,13 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    //{ path: 'bodegas',      component: BodegasComponent },
+    { path: 'bodegas',      component: BodegasComponent },
     { path: 'dashboard',   component: DashboardComponent },
     { path: 'categoria',   component: CategoriaComponent },
     //{ path: 'estanteria',   component: EstanteriasComponent },
     { path: 'motivo',     component: MotivoComponent },
     //{ path: 'movimientos',     component: MovimientosComponent },
-    //{ path: 'pasillos',          component: PasilloComponent },
+    { path: 'Pasillos',          component: PasillosComponent },
     //{ path: 'productos',           component: ProductosComponent},
     //{ path: 'tipomov',  component: TipomovComponent },
     //{ path: 'upgrade',        component: UpgradeComponent }

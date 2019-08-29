@@ -16,10 +16,28 @@ export class BodegasService {
   private getUrl(base, service) {   
     this.finallyUrl=base+service;
   }
-  getBodegas(): Observable<any> {    
+  getAll(): Observable<any> {    
     return this.http.get<any>(this.url+'mostrarbod')
     .pipe(
       catchError(this.handleError('mostrarbod', undefined))
+    );
+  }
+  postOne(item): Observable<any> {    
+    return this.http.post<any>(this.url+'bodega',item)
+    .pipe(
+      catchError(this.handleError('bodega', undefined))
+    );
+  }
+  putOne(item): Observable<any> {    
+    return this.http.put<any>(this.url+'actualizarbod/'+item.id,item)
+    .pipe(
+      catchError(this.handleError('actualizarbod', undefined))
+    );
+  }
+  deleteOne(id): Observable<any> {    
+    return this.http.delete<any>(this.url+'eliminarbod/'+id)
+    .pipe(
+      catchError(this.handleError('eliminarbod', undefined))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {
