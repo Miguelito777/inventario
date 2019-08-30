@@ -28,6 +28,7 @@ export class CategoriaService {
       catchError(this.handleError('cat', undefined))
     );
   }
+
   putOne(item): Observable<any> {    
     return this.http.put<any>(this.url+'actualizarcat/'+item.id,item)
     .pipe(
@@ -40,6 +41,9 @@ export class CategoriaService {
       catchError(this.handleError('eliminarcat', undefined))
     );
   }
+
+
+  
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       //console.error(error);

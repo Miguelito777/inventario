@@ -8,7 +8,6 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PasillosService {
-
   private url="http://localhost:8000/api/";
   public finallyUrl:any='';
 

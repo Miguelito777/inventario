@@ -69,6 +69,7 @@ export const AdminLayoutRoutes: Routes = [
     //{ path: 'movimientos',     component: MovimientosComponent },
     { path: 'Pasillos',          component: PasillosComponent },
     { path: 'Estanterias',           component: EstanteriasComponent},
+    { path: 'productos',           component: ProductosComponent},
     //{ path: 'tipomov',  component: TipomovComponent },
     //{ path: 'upgrade',        component: UpgradeComponent }
 

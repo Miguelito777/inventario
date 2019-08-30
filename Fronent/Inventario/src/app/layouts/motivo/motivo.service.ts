@@ -22,6 +22,40 @@ export class MotivoService {
       catchError(this.handleError('mostrarmotivo', undefined))
     );
   }
+
+
+  postOne(item): Observable<any> {    
+    return this.http.post<any>(this.url+'motivo',item)
+    .pipe(
+      catchError(this.handleError('motivo', undefined))
+    );
+  }
+
+  putOne(item): Observable<any> {    
+    return this.http.put<any>(this.url+'actualizarmotivo/'+item.id,item)
+    .pipe(
+      catchError(this.handleError('actualizarmotivo', undefined))
+    );
+  }
+  deleteOne(id): Observable<any> {    
+    return this.http.delete<any>(this.url+'eliminarmotivo/'+id)
+    .pipe(
+      catchError(this.handleError('eliminarmotivo', undefined))
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+  
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       //console.error(error);
