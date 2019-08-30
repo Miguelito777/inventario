@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TT_PASILLOS;
+use App\TC_BODEGAS;
 use Illuminate\Http\Request;
 
 class pasillosController extends Controller
@@ -15,7 +16,8 @@ class pasillosController extends Controller
 
     public function showAllpasillo()
    {
-      return response()->json(TT_PASILLOS::all());
+      //return response()->json(TT_PASILLOS::all());
+      return response()->json(TT_PASILLOS::with('TcBodega')->get());
    }
    public function showOnepasillo($id)
    {
@@ -23,13 +25,17 @@ class pasillosController extends Controller
    }
    public function create(Request $request)
    {
-       $pasillo= TT_PASILLOS::create($request->all());
+       $pasillo = TT_PASILLOS::create($request->all());
+       $bodega = TC_BODEGAS::find($pasillo->idbodega);
+       $pasillo->tc_bodega = $bodega; 
        return response()->json( $pasillo, 201);
    }
    public function update($id, Request $request)
    {
        $pasillo = TT_PASILLOS::findOrFail($id);
        $pasillo->update($request->all());
+       $bodega = TC_BODEGAS::find($pasillo->idbodega);
+       $pasillo->tc_bodega = $bodega; 
        return response()->json($pasillo, 200);
    }
    public function delete($id)

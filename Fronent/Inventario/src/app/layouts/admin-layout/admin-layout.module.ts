@@ -30,6 +30,8 @@ import {
 } from '@angular/material';
 import { from } from 'rxjs';
 import { CategoriaComponent } from '../categoria/categoria.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { CategoriaComponent } from '../categoria/categoria.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMatSelectSearchModule
   ],
   declarations: [
     DashboardComponent,

@@ -13,5 +13,8 @@ class TT_ESTANTERIAS extends Model
         'idpasillo'
       
     ];
+    public function TtPasillo(){
+        return $this->hasOne('App\TT_PASILLOS','id','idpasillo');
+    }
 }
 

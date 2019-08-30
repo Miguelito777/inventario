@@ -16,10 +16,10 @@
                             <div class="container">
                                 <form [formGroup]="item" (ngSubmit)="onSubmit(item.value)">
                                     <mat-form-field>
-                                        <input matInput placeholder="Codigo" formControlName="codigo">
+                                        <input matInput placeholder="Nombre bodega" formControlName="bodega">
                                     </mat-form-field>
                                     <mat-form-field>
-                                            <input matInput placeholder="Bodega" formControlName="idbodega">
+                                            <input matInput placeholder="Dirección bodega" formControlName="direccion">
                                         </mat-form-field>
                                     <button mat-raised-button class="button" type="submit" color="primary"
                                         [disabled]="item.invalid">Guardar</button>
@@ -48,14 +48,14 @@
                                                 <td>
                                                     <div class="form-check">
                                                         <label class="form-check-label">
-                                                            {{item.id}}
+                                                            {{item.bodega}}
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check">
                                                         <label class="form-check-label">
-                                                            {{item.codigo}} - {{item.idbodega}}
+                                                            {{item.bodiga}}  {{item.direccion}}
                                                         </label>
                                                     </div>
                                                 </td>

@@ -2,31 +2,38 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-md-12">
-                    <div class="card">
-                            <div class="card-header card-header-tabs card-header-danger">
-                                    <div class="nav-tabs-navigation">
-                                        <div class="nav-tabs-wrapper">
-                                            <span class="nav-tabs-title">
-                                                <b>Crear o actualizar</b>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                        <div class="container">
-                            <form [formGroup]="item" (ngSubmit)="onSubmit(item.value)">
-                                <mat-form-field>
-                                    <input matInput placeholder="Pasillo" formControlName="pasillo">
-                                </mat-form-field>
-                                <mat-form-field>
-                                        <input matInput placeholder="Bodega" formControlName="idbodega">
-                                    </mat-form-field>
-                                <button mat-raised-button class="button" type="submit" color="primary"
-                                    [disabled]="item.invalid">Guardar</button>
-                            </form>
-                            <br>
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-danger">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <span class="nav-tabs-title">
+                                    <b>Crear o actualizar</b>
+                                </span>
+                            </div>
                         </div>
                     </div>
+                    <br>
+                    <div class="container">
+                        <form [formGroup]="item" (ngSubmit)="onSubmit(item.value)">
+                            <mat-form-field>
+                                <input matInput placeholder="Pasillo" formControlName="codigo">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-select [formControl]="bankCtrl" placeholder="Bodega" #singleSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+                                        {{bank.bodega}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button mat-raised-button class="button" type="submit" color="primary"
+                                [disabled]="item.invalid">Guardar</button>
+                        </form>
+                        <br>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="card">
@@ -55,7 +62,7 @@
                                             <td>
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        {{item.codigo}} - {{item.idbodega}}
+                                                        {{item.codigo}}, {{item.tc_bodega.bodega}}
                                                     </label>
                                                 </div>
                                             </td>

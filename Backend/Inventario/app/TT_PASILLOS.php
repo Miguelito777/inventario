@@ -13,4 +13,7 @@ class TT_PASILLOS extends Model
         'idbodega'
       
     ];
+    public function TcBodega(){
+        return $this->hasOne('App\TC_BODEGAS','id','idbodega');
+    }
 }
