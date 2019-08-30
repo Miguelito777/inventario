@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CategoriaComponent implements OnInit {
   Categorias:any=[];
   categoria: FormGroup;
+  
   constructor(
     private api:CategoriaService,
     private fb: FormBuilder

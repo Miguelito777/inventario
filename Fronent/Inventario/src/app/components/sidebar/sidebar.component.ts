@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/Pasillos', title: 'PASILLOS',  icon:'content_paste', class: '' },
     { path: '/Estanterias', title: 'ESTANTERIAS',  icon:'library_books', class: '' },
    // { path: '/tipomov', title: 'TIPOS DE MOVIMIENTO',  icon:'bubble_chart', class: '' },
-   // { path: '/productos', title: 'PRODUCTOS',  icon:'location_on', class: '' },
+     { path: '/productos', title: 'PRODUCTOS',  icon:'location_on', class: '' },
    // { path: '/movimientos', title: 'MOVIMIENTOS',  icon:'notifications', class: '' }
 ];
 
