@@ -1,3 +1,151 @@
-<p>
-  movimientos works!
-</p>
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-4 col-md-12">
+                  <div class="card">
+                          <div class="card-header card-header-tabs card-header-danger">
+                                  <div class="nav-tabs-navigation">
+                                      <div class="nav-tabs-wrapper">
+                                          <span class="nav-tabs-title">
+                                              <b>Crear o actualizar Movimientos</b>
+                                          </span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <br>
+                      <div class="container">
+                          <form [formGroup]="item" (ngSubmit)="onSubmit(item.value)">
+                              <mat-form-field>
+                                  <input matInput placeholder="cantidad" formControlName="cantidad">
+                              </mat-form-field>
+                              <mat-form-field>
+                                <input matInput placeholder="precio" formControlName="precio">
+                            </mat-form-field>
+                            
+                        <mat-form-field>
+                            <mat-select [formControl]="bankCtrl" placeholder="Producto" >
+                                <mat-option>
+                                    <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+                                    {{bank.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                        <mat-form-field>
+                          <mat-select [formControl]="bankCtrl1" placeholder="codigo" >
+                              <mat-option>
+                                  <ngx-mat-select-search [formControl]="bankFilterCtrl1"></ngx-mat-select-search>
+                              </mat-option>
+                              <mat-option *ngFor="let bank1 of filteredBanks1 | async" [value]="bank1">
+                                  {{bank1.codigo}}
+                              </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field>
+                        <mat-select [formControl]="bankCtrl2" placeholder="Tipo de Movimiento" >
+                            <mat-option>
+                                <ngx-mat-select-search [formControl]="bankFilterCtrl2"></ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let bank2 of filteredBanks2 | async" [value]="bank2">
+                                {{bank2.tipomov}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                              <button mat-raised-button class="button" type="submit" color="primary"
+                                  [disabled]="item.invalid">Guardar</button>
+                          </form>
+                          <br>
+                      </div>
+                  </div>
+          </div>
+          <div class="col-lg-8 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-tabs card-header-danger">
+                      <div class="nav-tabs-navigation">
+                          <div class="nav-tabs-wrapper">
+                              <span class="nav-tabs-title">
+                                  <b>Listado de productos creadas:</b>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="profile">
+                              <table class="table">
+                                  <tbody>
+                                      <tr *ngFor="let item of items">
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      {{item.id}}
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      {{item.cantidad}}
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    {{item.precio}}
+                                                </label>
+                                            </div>
+                                        </td>
+                                      <!--
+                                      <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{item.tt_tipomov.idtipomovimiento}}
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                      <div class="form-check">
+                                          <label class="form-check-label">
+                                              {{item.tt_estanterias.id_estanteria}}
+                                          </label>
+                                      </div>
+                                  </td>
+                                  <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            {{item.tt_productos.id_producto}}
+                                        </label>
+                                    </div>
+                                </td>--> 
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Editar productos"
+                                                  [matTooltipPosition]="'above'"
+                                                  class="btn btn-primary btn-link btn-sm btn-just-icon"
+                                                  (click)="edit(item)">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Anular productos"
+                                                  [matTooltipPosition]="'above'"
+                                                  class="btn btn-danger btn-link btn-sm btn-just-icon"
+                                                  (click)="delete(item.id)">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
