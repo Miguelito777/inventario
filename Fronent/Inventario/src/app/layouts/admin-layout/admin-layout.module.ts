@@ -26,7 +26,9 @@ import {
   MatRippleModule,
   MatFormFieldModule,
     MatSelectModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatTableModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { from } from 'rxjs';
 import { CategoriaComponent } from '../categoria/categoria.component';
@@ -45,7 +47,9 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatSelectModule,
     MatTooltipModule,
     MatAutocompleteModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   declarations: [
     DashboardComponent,
@@ -64,10 +68,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     EstanteriasComponent,
     ProductosComponent,
     MovimientosComponent,
-    TipomovComponent,
-    
-
-
+    TipomovComponent
   ]
 })
 

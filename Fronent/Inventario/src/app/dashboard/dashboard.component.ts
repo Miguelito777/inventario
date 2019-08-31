@@ -1,6 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as Chartist from 'chartist';
 import { DashboardService } from './dashboard.service';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+
+export interface Ingreso {
+  fecha_ingreso: string;
+  cantidad: number;
+  precio: number;
+  nombre: string;
+  estanteria: string;
+  pasillo: string;
+  bodega: string;
+}
+
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +26,20 @@ export class DashboardComponent implements OnInit {
   productosEscasos;
   totalIngresos;
   totalSalidas;
+  ELEMENT_DATA: Ingreso[] = [];
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  displayedColumns: string[] = ['fecha_ingreso', 'cantidad', 'precio', 'nombre', 'estanteria', 'pasillo', 'bodega'];
+  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+
   constructor(
     private api:DashboardService
   ) { }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -73,6 +97,7 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
       this.api.countProducto().subscribe(
         data=>{
@@ -99,6 +124,12 @@ export class DashboardComponent implements OnInit {
           this.totalSalidas = data;
         }
       );
+      this.api.getMovimientos(1).subscribe(
+        data=>{
+          this.dataSource = data;
+        }
+      );
+      
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
           series: [

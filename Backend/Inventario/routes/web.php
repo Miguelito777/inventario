@@ -91,5 +91,6 @@
         $router->get('dashboard/bodegas/count',  ['uses' => 'DashboardController@countBadega']);
         $router->get('dashboard/productos/escasos',  ['uses' => 'DashboardController@productosEscasos']);
         $router->get('dashboard/countIngresos',  ['uses' => 'DashboardController@countIngresos']);
-        $router->get('dashboard/countSalidas',  ['uses' => 'DashboardController@countSalidas']);     
+        $router->get('dashboard/countSalidas',  ['uses' => 'DashboardController@countSalidas']);
+        $router->get('dashboard/getMovimientos/{id}',  ['uses' => 'DashboardController@getIngresos']);     
     });

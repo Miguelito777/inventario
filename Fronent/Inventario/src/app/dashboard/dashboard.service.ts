@@ -46,6 +46,12 @@ export class DashboardService {
       catchError(this.handleError('dashboard/countSalidas', undefined))
     );
   }
+  getMovimientos(idTipoMovimiento): Observable<any> {    
+    return this.http.get<any>(this.url+'dashboard/getMovimientos/'+idTipoMovimiento)
+    .pipe(
+      catchError(this.handleError('dashboard/getMovimientos', undefined))
+    );
+  }
   
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
