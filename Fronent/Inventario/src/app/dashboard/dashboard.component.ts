@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +8,14 @@ import * as Chartist from 'chartist';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  exitProducto;
+  exitBodega;
+  productosEscasos;
+  totalIngresos;
+  totalSalidas;
+  constructor(
+    private api:DashboardService
+  ) { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -67,7 +74,31 @@ export class DashboardComponent implements OnInit {
   };
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
-
+      this.api.countProducto().subscribe(
+        data=>{
+          this.exitProducto = data;
+        }
+      );
+      this.api.countBodegas().subscribe(
+        data=>{
+          this.exitBodega = data;
+        }
+      );
+      this.api.productosEscasos().subscribe(
+        data=>{
+          this.productosEscasos = data;
+        }
+      );
+      this.api.countIngresos().subscribe(
+        data=>{
+          this.totalIngresos = data;
+        }
+      );
+      this.api.countSalidas().subscribe(
+        data=>{
+          this.totalSalidas = data;
+        }
+      );
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
           series: [

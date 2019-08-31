@@ -9,7 +9,7 @@ class TT_TIPOMOV extends Model
     protected $table = "TT_TIPOMOV";
 
     protected $fillable = [
-        'nombretip',
-        
+        'tipomov',
+        'id_motivo',
     ];
 }
