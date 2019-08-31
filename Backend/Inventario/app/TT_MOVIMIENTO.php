@@ -10,11 +10,10 @@ class TT_MOVIMIENTO extends Model
     protected $table = "TT_MOVIMIENTO";
 
     protected $fillable = [
-        
         'cantidad',
         'precio',
         'idtipomovimiento',
-        'idestanteria',
-        'idproducto'
+        'id_producto',
+        'idbodega',
     ];
 }

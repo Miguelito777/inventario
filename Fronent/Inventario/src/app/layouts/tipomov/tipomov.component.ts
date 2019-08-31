@@ -129,12 +129,10 @@ export class TipomovComponent implements OnInit {
         console.log(dataForm);
         
         this.api.postOne(dataForm).subscribe(
-          data=>{
-            console.log(data);
-            
-            //this.items.push(data);
-            //this.item.controls.codigo.setValue('');
-            //this.bankCtrl.setValue(this.banks);
+          data=>{            
+            this.items.push(data);
+            this.item.controls.tipomov.setValue('');
+            this.bankCtrl.setValue(this.banks);
           }
         );
       }      

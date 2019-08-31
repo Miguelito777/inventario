@@ -54,8 +54,10 @@ class Tablastransaccionales extends Migration
             $table->float('precio');
             $table->unsignedInteger('idtipomovimiento');
             $table->unsignedInteger('id_estanteria');
+            $table->unsignedInteger('id_producto');
             $table->foreign('idtipomovimiento')->references('id')->on('TT_TIPOMOV');
             $table->foreign('id_estanteria')->references('id')->on('TT_ESTANTERIAS');
+            $table->foreign('id_producto')->references('id')->on('TT_PRODUCTO');
             $table->timestamps();
         });
 

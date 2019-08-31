@@ -86,4 +86,10 @@
         $router->put('actualizarmotivo/{id}',  ['uses' => 'motivoController@update']);
         $router->delete('eliminarmotivo/{id}',  ['uses' => 'motivoController@delete']);
 
-       });
+
+        $router->get('dashboard/productos/count',  ['uses' => 'DashboardController@countProducto']);
+        $router->get('dashboard/bodegas/count',  ['uses' => 'DashboardController@countBadega']);
+        $router->get('dashboard/productos/escasos',  ['uses' => 'DashboardController@productosEscasos']);
+        $router->get('dashboard/countIngresos',  ['uses' => 'DashboardController@countIngresos']);
+        $router->get('dashboard/countSalidas',  ['uses' => 'DashboardController@countSalidas']);     
+    });
