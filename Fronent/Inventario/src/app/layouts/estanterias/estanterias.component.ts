@@ -21,6 +21,8 @@ interface Pasillo{
   templateUrl: './estanterias.component.html',
   styleUrls: ['./estanterias.component.scss']
 })
+
+
 export class EstanteriasComponent implements OnInit {
   items:any=[];
   item: FormGroup;

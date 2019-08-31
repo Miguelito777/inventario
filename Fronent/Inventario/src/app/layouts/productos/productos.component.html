@@ -14,7 +14,7 @@
                               </div>
                               <br>
                       <div class="container">
-                          <form [formGroup]="productos" (ngSubmit)="onSubmit(productos.value)">
+                          <form [formGroup]="item" (ngSubmit)="onSubmit(item.value)">
                               <mat-form-field>
                                   <input matInput placeholder="codigo" formControlName="codigo">
                               </mat-form-field>
@@ -28,10 +28,17 @@
                             <input matInput placeholder="cantidad" formControlName="cantidad">
                         </mat-form-field>
                         <mat-form-field>
-                          <input matInput placeholder="idcat" formControlName="idcat">
-                      </mat-form-field>
+                            <mat-select [formControl]="bankCtrl" placeholder="categoria" >
+                                <mat-option>
+                                    <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+                                    {{bank.categoria}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
                               <button mat-raised-button class="button" type="submit" color="primary"
-                                  [disabled]="productos.invalid">Guardar</button>
+                                  [disabled]="item.invalid">Guardar</button>
                           </form>
                           <br>
                       </div>
@@ -53,7 +60,7 @@
                           <div class="tab-pane active" id="profile">
                               <table class="table">
                                   <tbody>
-                                      <tr *ngFor="let item of Productos">
+                                      <tr *ngFor="let item of items">
                                           <td>
                                               <div class="form-check">
                                                   <label class="form-check-label">
@@ -89,6 +96,13 @@
                                             </label>
                                         </div>
                                     </td>
+                                    <!--<td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{item.tc_categoria.idcat}}
+                                            </label>
+                                        </div>
+                                    </td>-->
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Editar productos"
                                                   [matTooltipPosition]="'above'"
