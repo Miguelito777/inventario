@@ -126,7 +126,8 @@ export class DashboardComponent implements OnInit {
       );
       this.api.getMovimientos(1).subscribe(
         data=>{
-          this.dataSource = data;
+          this.ELEMENT_DATA = data;
+          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         }
       );
       
