@@ -127,15 +127,14 @@ export class EstanteriasComponent implements OnInit {
       if (this.bankCtrl.value instanceof Array) {
       }else{
         dataForm.idpasillo = this.bankCtrl.value.id;
-        console.log(dataForm);
+        //console.log(dataForm);
         
         this.api.postOne(dataForm).subscribe(
           data=>{
-            console.log(data);
-            
-            //this.items.push(data);
-            //this.item.controls.codigo.setValue('');
-            //this.bankCtrl.setValue(this.banks);
+            //console.log(data);
+            this.items.push(data);
+            this.item.controls.codigo.setValue('');
+            this.bankCtrl.setValue(this.banks);
           }
         );
       }      
@@ -157,8 +156,8 @@ export class EstanteriasComponent implements OnInit {
     }
   }
   edit(item){
-    this.item.controls.codigo.setValue(item.codigo);
-    this.bankCtrl.setValue(item.tc_pasillo);
+    this.item.controls.codigo.setValue(item.codigo);    
+    this.bankCtrl.setValue(item.tt_pasillo);
     //this.item.controls.idbodega.setValue(item.idbodega);
     this.item.controls.id.setValue(item.id);
   }

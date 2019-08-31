@@ -35,7 +35,7 @@ class estanteriasController extends Controller
    {
        $estanteria= TT_ESTANTERIAS::create($request->all());
        $pasillo = TT_PASILLOS::find($estanteria->idpasillo);
-       $estanteria->tc_pasillo = $pasillo; 
+       $estanteria->tt_pasillo = $pasillo; 
        return response()->json( $estanteria, 201);
    }
    public function update($id, Request $request)

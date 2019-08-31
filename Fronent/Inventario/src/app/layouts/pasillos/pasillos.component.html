@@ -1,5 +1,4 @@
 <div class="main-content">
-<<<<<<< HEAD
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-md-12">
@@ -91,87 +90,4 @@
             </div>
         </div>
     </div>
-=======
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-lg-4 col-md-12">
-                  <div class="card">
-                          <div class="card-header card-header-tabs card-header-danger">
-                                  <div class="nav-tabs-navigation">
-                                      <div class="nav-tabs-wrapper">
-                                          <span class="nav-tabs-title">
-                                              <b>Crear o actualizar Pasillo</b>
-                                          </span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <br>
-                      <div class="container">
-                          <form [formGroup]="Pasillo" (ngSubmit)="onSubmit(pasillo.value)">
-                              <mat-form-field>
-                                  <input matInput placeholder="Pasillo" formControlName="pasillo">
-                              </mat-form-field>
-                              <button mat-raised-button class="button" type="submit" color="primary"
-                                  [disabled]="pasillo.invalid">Guardar</button>
-                          </form>
-                          <br>
-                      </div>
-                  </div>
-          </div>
-          <div class="col-lg-8 col-md-12">
-              <div class="card">
-                  <div class="card-header card-header-tabs card-header-danger">
-                      <div class="nav-tabs-navigation">
-                          <div class="nav-tabs-wrapper">
-                              <span class="nav-tabs-title">
-                                  <b>Listado de Pasillos creadas:</b>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card-body">
-                      <div class="tab-content">
-                          <div class="tab-pane active" id="profile">
-                              <table class="table">
-                                  <tbody>
-                                      <tr *ngFor="let item of pasillo">
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      {{item.id}}
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      {{item.Pasillo}}
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Editar pasillo"
-                                                  [matTooltipPosition]="'above'"
-                                                  class="btn btn-primary btn-link btn-sm btn-just-icon"
-                                                  (click)="edit(item)">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Anular pasillo"
-                                                  [matTooltipPosition]="'above'"
-                                                  class="btn btn-danger btn-link btn-sm btn-just-icon"
-                                                  (click)="delete(item.id)">
-                                                  <i class="material-icons">close</i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
->>>>>>> pestrada
 </div>
