@@ -66,11 +66,11 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'categoria',   component: CategoriaComponent },
     //{ path: 'estanteria',   component: EstanteriasComponent },
     { path: 'motivo',     component: MotivoComponent },
-    //{ path: 'movimientos',     component: MovimientosComponent },
+    { path: 'movimientos',     component: MovimientosComponent },
     { path: 'Pasillos',          component: PasillosComponent },
     { path: 'Estanterias',           component: EstanteriasComponent},
     { path: 'productos',           component: ProductosComponent},
-    //{ path: 'tipomov',  component: TipomovComponent },
+    { path: 'tipomov',  component: TipomovComponent },
     //{ path: 'upgrade',        component: UpgradeComponent }
 
 ];

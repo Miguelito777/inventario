@@ -1,19 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReplaySubject, Subject } from 'rxjs';
+import { MatSelect } from '@angular/material';
+import { takeUntil, take } from 'rxjs/operators';
 import { ProductosService } from './productos.service';
+import { CategoriaService } from '../categoria/categoria.service';
+
+interface Categorias{
+  categoria:string
+}
 
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.scss']
 })
+
+
+
+
 export class ProductosComponent implements OnInit {
 
-  Productos:any=[];
-  productos: FormGroup;
+   items:any=[];
+  item: FormGroup;
+
+  protected banks: Categorias[] = [];
+
+    /** control for the selected bank */
+    public bankCtrl: FormControl = new FormControl();
   
+    /** control for the MatSelect filter keyword */
+    public bankFilterCtrl: FormControl = new FormControl();
+  
+    /** list of banks filtered by search keyword */
+    public filteredBanks: ReplaySubject<Categorias[]> = new ReplaySubject<Categorias[]>(1);
+  
+    //@ViewChild('singleSelectTo') singleSelectTo: MatSelect;
+  
+    /** Subject that emits when the component has been destroyed. */
+    protected _onDestroy = new Subject<void>();
+  
+
+
   constructor(
     private api:ProductosService,
+    private api_two:CategoriaService,
     private fb: FormBuilder
   ) { 
 
@@ -22,12 +53,32 @@ export class ProductosComponent implements OnInit {
   ngOnInit() {
     this.api.getAll().subscribe(
       data=>{
-        this.Productos = data;
+        this.items = data;
+      }
+    );
+    this.api_two.getAll().subscribe(
+      data=>{
+        //console.log(data);
+        
+        this.banks = data;
+
+        // set initial selection
+        this.bankCtrl.setValue(this.banks);
+
+        // load the initial bank list
+        this.filteredBanks.next(this.banks.slice());
+
+        // listen for search field value changes
+        this.bankFilterCtrl.valueChanges
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(() => {
+            this.filterBanks();
+          });
       }
     );
 
-    this.productos = this.fb.group({
-      idcat: ['', [Validators.required, Validators.minLength(1)]],
+    this.item = this.fb.group({
+     // idcat: ['', [Validators.required, Validators.minLength(1)]],
       cantidad: ['', [Validators.required, Validators.minLength(1)]],
       description: ['', [Validators.required, Validators.minLength(1)]],
       nombre: ['', [Validators.required, Validators.minLength(1)]],
@@ -35,46 +86,82 @@ export class ProductosComponent implements OnInit {
       id:[null]
     });
   }
+
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+  protected filterBanks() {
+    if (!this.banks) {
+      return;
+    }
+    // get the search keyword
+    let search = this.bankFilterCtrl.value;
+    if (!search) {
+      this.filteredBanks.next(this.banks.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredBanks.next(
+      this.banks.filter(bank => bank.categoria.toLowerCase().indexOf(search) > -1)
+    );
+  }
+
   onSubmit(dataForm){
     if(dataForm.id == null){
-      this.api.postOne(dataForm).subscribe(
-        data=>{
-          this.Productos.push(data);
-          this.productos.controls.codigo.setValue('');
-          this.productos.controls.nombre.setValue('');
-          this.productos.controls.description.setValue('');
-          this.productos.controls.cantidad.setValue('');
-          this.productos.controls.idcat.setValue('');
-        }
-      );
+      if (this.bankCtrl.value instanceof Array) {
+      }else{
+        dataForm.idcat = this.bankCtrl.value.id;
+        console.log(dataForm);
+        
+        this.api.postOne(dataForm).subscribe(
+          data=>{
+            console.log(data);
+            
+           this.items.push(data);
+           this.item.controls.codigo.setValue('');
+           this.item.controls.nombre.setValue('');
+           this.item.controls.description.setValue('');
+           this.item.controls.cantidad.setValue('');
+           this.bankCtrl.setValue(this.banks);
+          }
+        );
+      }      
     }else{
+      dataForm.idcat = this.bankCtrl.value.id;      
       this.api.putOne(dataForm).subscribe(
         data=>{
           //this.Categorias.push(data);
-          for(var i in this.Productos){
-            if(this.Productos[i].id == data.id){
-              this.Productos[i] = data;
+          for(var i in this.items){
+            if(this.items[i].id == data.id){
+              this.items[i] = data;
             }
           }
-          this.productos.controls.productos.setValue('');
-          this.productos.controls.id.setValue(null);
+         this.bankCtrl.setValue(this.banks);
+          this.item.controls.cantidad.setValue('');
+          this.item.controls.description.setValue('');
+          this.item.controls.nombre.setValue('');
+          this.item.controls.codigo.setValue('');
+          this.item.controls.id.setValue(null);
         }
       );
     }
   }
   edit(item){
-    this.productos.controls.productos.setValue(item.idcat);
-    this.productos.controls.productos.setValue(item.cantidad);
-    this.productos.controls.productos.setValue(item.description); 
-    this.productos.controls.productos.setValue(item.nombre);
-    this.productos.controls.productos.setValue(item.codigo);
-    this.productos.controls.id.setValue(item.id);
+    this.bankCtrl.setValue(item.tc_categoria);
+    this.item.controls.cantidad.setValue(item.cantidad);
+    this.item.controls.description.setValue(item.description); 
+    this.item.controls.nombre.setValue(item.nombre);
+    this.item.controls.codigo.setValue(item.codigo);
+    this.item.controls.id.setValue(item.id);
   }
   delete(id){
     let deleteItem = false;
-    for(var i in this.Productos){
-      if(this.Productos[i].id == id){
-        this.Productos.splice(i,1);
+    for(var i in this.items){
+      if(this.items[i].id == id){
+        this.items.splice(i,1);
         deleteItem = true;
       }
     }
