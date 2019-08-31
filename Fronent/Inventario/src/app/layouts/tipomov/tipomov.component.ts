@@ -1,4 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReplaySubject, Subject } from 'rxjs';
+import { MatSelect } from '@angular/material';
+import { takeUntil, take } from 'rxjs/operators';
+import { TipomovService } from './tipomov.service';
+import { MotivoService } from '../motivo/motivo.service';
+
+interface movimientos{
+  tipomov:string,
+  
+}
+
+
+
 
 @Component({
   selector: 'app-tipomov',
@@ -7,9 +21,160 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TipomovComponent implements OnInit {
 
-  constructor() { }
+  items:any=[];
+  item: FormGroup;
+    /** list of banks */
+    protected banks: movimientos[] = [];
 
-  ngOnInit() {
+    /** control for the selected bank */
+    public bankCtrl: FormControl = new FormControl();
+  
+    /** control for the MatSelect filter keyword */
+    public bankFilterCtrl: FormControl = new FormControl();
+  
+    /** list of banks filtered by search keyword */
+    public filteredBanks: ReplaySubject<movimientos[]> = new ReplaySubject<movimientos[]>(1);
+  
+    //@ViewChild('singleSelectTo') singleSelectTo: MatSelect;
+  
+    /** Subject that emits when the component has been destroyed. */
+    protected _onDestroy = new Subject<void>();
+
+  constructor(
+    private api:TipomovService,
+    private api_two:MotivoService,
+    private fb: FormBuilder
+  ) { 
+
   }
 
+  ngOnInit() {
+    this.api.getAll().subscribe(
+      data=>{
+        this.items = data;
+      }
+    );
+    this.api_two.getMotivo().subscribe(
+      data=>{
+        //console.log(data);
+        
+        this.banks = data;
+
+        // set initial selection
+        this.bankCtrl.setValue(this.banks);
+
+        // load the initial bank list
+        this.filteredBanks.next(this.banks.slice());
+
+        // listen for search field value changes
+        this.bankFilterCtrl.valueChanges
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(() => {
+            this.filterBanks();
+          });
+      }
+    );
+    this.item = this.fb.group({
+      tipomov: ['', [Validators.required, Validators.minLength(2)]],
+      //bodega: ['', [Validators.required]],
+      id:[null]
+    });
+  }
+  /*ngAfterViewInit() {
+    this.setInitialValue();
+  }*/
+
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+  /**
+   * Sets the initial value after the filteredBanks are loaded initially
+   */
+  /*protected setInitialValue() {
+    this.filteredBanks
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredBanks are loaded initially
+        // and after the mat-option elements are available
+        this.singleSelectTo.compareWith = (a: Pasillo, b: Pasillo) => a && b && a.id === b.id;
+      });
+  }*/
+
+  protected filterBanks() {
+    if (!this.banks) {
+      return;
+    }
+    // get the search keyword
+    let search = this.bankFilterCtrl.value;
+    if (!search) {
+      this.filteredBanks.next(this.banks.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredBanks.next(
+      this.banks.filter(bank => bank.tipomov.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  onSubmit(dataForm){
+    if(dataForm.id == null){
+      if (this.bankCtrl.value instanceof Array) {
+      }else{
+        dataForm.id_motivo = this.bankCtrl.value.id;
+        console.log(dataForm);
+        
+        this.api.postOne(dataForm).subscribe(
+          data=>{
+            console.log(data);
+            
+            //this.items.push(data);
+            //this.item.controls.codigo.setValue('');
+            //this.bankCtrl.setValue(this.banks);
+          }
+        );
+      }      
+    }else{
+      dataForm.id_motivo = this.bankCtrl.value.id;      
+      this.api.putOne(dataForm).subscribe(
+        data=>{
+          //this.Categorias.push(data);
+          for(var i in this.items){
+            if(this.items[i].id == data.id){
+              this.items[i] = data;
+            }
+          }
+          this.item.controls.tipomov.setValue('');
+          this.bankCtrl.setValue(this.banks);
+          this.item.controls.id.setValue(null);
+        }
+      );
+    }
+  }
+  edit(item){
+    this.item.controls.tipomov.setValue(item.codigo);
+    this.bankCtrl.setValue(item.tc_motivo);
+    //this.item.controls.idbodega.setValue(item.idbodega);
+    this.item.controls.id.setValue(item.id);
+  }
+  delete(id){
+    let deleteItem = false;
+    for(var i in this.items){
+      if(this.items[i].id == id){
+        this.items.splice(i,1);
+        deleteItem = true;
+      }
+    }
+    if(deleteItem){
+      this.api.deleteOne(id).subscribe(
+        data=>{
+          console.log(data);
+        }
+      );
+    }
+  } 
 }
