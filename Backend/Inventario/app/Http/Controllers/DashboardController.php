@@ -38,7 +38,7 @@ class DashboardController extends Controller
 
    public function getIngresos($idMotivo){
         $ingresos = DB::table('tt_movimiento as mov')
-            ->select('mov.created_at as fecha_ingreso', 'mov.cantidad', 'mov.precio', 'prod.nombre', 'est.codigo as estanteria', 'pas.codigo as pasillo', 'bod.bodega')
+            ->select('mov.created_at as fecha_ingreso', 'mov.cantidad', 'mov.precio', 'prod.nombre', 'est.codigo as estanteria', 'pas.codigo as pasillo', 'bod.bodega', 'mt.motivo')
             ->join('tt_producto as prod','mov.id_producto', '=', 'prod.id')
             ->join('tt_estanterias as est','mov.id_estanteria', '=', 'est.id')
             ->join('tt_pasillos as pas','est.idpasillo', '=', 'pas.id')

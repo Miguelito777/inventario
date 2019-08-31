@@ -12,6 +12,7 @@ export interface Ingreso {
   estanteria: string;
   pasillo: string;
   bodega: string;
+  motivo: string;
 }
 
 
@@ -29,7 +30,7 @@ export class DashboardComponent implements OnInit {
   ELEMENT_DATA: Ingreso[] = [];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['fecha_ingreso', 'cantidad', 'precio', 'nombre', 'estanteria', 'pasillo', 'bodega'];
+  displayedColumns: string[] = ['fecha_ingreso', 'cantidad', 'precio', 'nombre', 'estanteria', 'pasillo', 'bodega','motivo'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
   constructor(
