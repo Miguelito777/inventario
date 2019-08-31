@@ -14,7 +14,7 @@ class TT_MOVIMIENTO extends Model
         'cantidad',
         'precio',
         'idtipomovimiento',
-        'idproducto',
-        'idbodega',
+        'idestanteria',
+        'idproducto'
     ];
 }

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReplaySubject, Subject } from 'rxjs';
+import { MatSelect } from '@angular/material';
+import { takeUntil, take } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-movimientos',
